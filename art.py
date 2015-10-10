@@ -1,4 +1,5 @@
 import turtle             # Allows us to use turtles
+import math
 wn = turtle.Screen()      # Creates a playground for turtles
 alex = turtle.Turtle()
 
@@ -8,27 +9,27 @@ alex = turtle.Turtle()
 def makeFlower():
     print('making a flower')
 
-def makeLeaf(tur, size):
+def drawLeaf(tur, size, degrees):
 
-    tur.right(45)
+    tur.right(degrees / 2)
     tur.forward(size)
     for i in range(270):
-        tur.right(1)
-        tur.forward(size / 60)
+        tur.left(1)
+        tur.forward((size * math.pi) / (degrees * 90))
     tur.forward(size)
 
-    window.mainloop()
+    wn.mainloop()
 
 
 
 options = {
     'flower': makeFlower,
-    'leaf': makeLeaf
+    'leaf': drawLeaf
 }
 
 # try:
 #     options[make]()
 # except KeyError:
 #     print('we can\'t make a '+make)
-
-makeLeaf(alex, 90)
+alex.setheading(0)
+drawLeaf(alex, 90, 45)
